@@ -19,6 +19,9 @@ app.use(
 
 // Routers
 
+const authRouter = require("./routes/authRouter")
+app.use("/auth", authRouter)
+
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
 })
