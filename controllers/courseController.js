@@ -21,3 +21,12 @@ exports.course_new_post = async (req, res) => {
     res.status(500).send({ msg: "Error creating a new course!", error })
   }
 }
+
+exports.course_show_get = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.courseId)
+    res.status(200).send(course)
+  } catch (error) {
+    res.status(500).send({ msg: "Error getting a course!", error })
+  }
+}

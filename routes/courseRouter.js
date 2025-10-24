@@ -9,5 +9,6 @@ router.post(
   middleware.verifyToken,
   courseCtrl.course_new_post
 )
+router.get("/:courseId", courseCtrl.course_show_get)
 
 module.exports = router
