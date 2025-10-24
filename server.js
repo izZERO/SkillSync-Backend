@@ -12,10 +12,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
-app.use(
-  "/public/<Insert Photos Upload Here>",
-  express.static("./public/<Insert Photos Upload Here>")
-)
+app.use("/public/images", express.static("./public/images"))
 
 // Routers
 
