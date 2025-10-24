@@ -16,15 +16,15 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      required: true,
+      default: "student",
     },
     bio: {
       type: String,
-      required: true,
+      default: "",
     },
     profilePicture: {
       type: String,
-      required: true,
+      default: "public/images/defaultpfp.svg",
     },
   },
   {
