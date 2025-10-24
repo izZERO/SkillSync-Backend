@@ -19,6 +19,9 @@ app.use("/public/images", express.static("./public/images"))
 const authRouter = require("./routes/authRouter")
 app.use("/auth", authRouter)
 
+const userRouter = require("./routes/userRouter")
+app.use("/", userRouter)
+
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
 })
