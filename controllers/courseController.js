@@ -30,3 +30,20 @@ exports.course_show_get = async (req, res) => {
     res.status(500).send({ msg: "Error getting a course!", error })
   }
 }
+
+exports.course_update_put = async (req, res) => {
+  try {
+    if (!res.locals.payload.id) {
+      res.status(403).send({ status: "Error", msg: "Unauthorized" })
+    } else {
+      const course = await Course.findByIdAndUpdate(
+        req.params.courseId,
+        req.body,
+        { new: true }
+      )
+      res.status(200).send(course)
+    }
+  } catch (error) {
+    res.status(500).send({ msg: "Error editing a course!", error })
+  }
+}
