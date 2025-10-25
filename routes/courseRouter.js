@@ -16,5 +16,11 @@ router.put(
   middleware.verifyToken,
   courseCtrl.course_update_put
 )
+router.delete(
+  "/:courseId",
+  middleware.stripToken,
+  middleware.verifyToken,
+  courseCtrl.course_deleteCourse_delete
+)
 
 module.exports = router

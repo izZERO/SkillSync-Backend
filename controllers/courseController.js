@@ -47,3 +47,16 @@ exports.course_update_put = async (req, res) => {
     res.status(500).send({ msg: "Error editing a course!", error })
   }
 }
+
+exports.course_deleteCourse_delete = async (req, res) => {
+  try {
+    if (!res.locals.payload.id) {
+      res.status(403).send({ status: "Error", msg: "Unauthorized" })
+    } else {
+      const course = await Course.findByIdAndDelete(req.params.courseId)
+      res.status(200).send("Course Deleted!")
+    }
+  } catch (error) {
+    res.status(500).send({ msg: "Error updating a course!", error })
+  }
+}
