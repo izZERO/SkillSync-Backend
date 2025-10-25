@@ -33,15 +33,17 @@ exports.course_show_get = async (req, res) => {
 
 exports.course_update_put = async (req, res) => {
   try {
-    if (!res.locals.payload.id) {
+    const currentUser = res.locals.payload.id
+    const course = await Course.findById(req.params.courseId)
+    if (!course) {
+      res.status(404).send({ msg: "Course not found!", error })
+    }
+
+    if (course.instructor.toString() !== currentUser) {
       res.status(403).send({ status: "Error", msg: "Unauthorized" })
     } else {
-      const course = await Course.findByIdAndUpdate(
-        req.params.courseId,
-        req.body,
-        { new: true }
-      )
-      res.status(200).send(course)
+      await Course.updateOne({ _id: course._id }, req.body)
+      res.status(200).send("Course Updated!")
     }
   } catch (error) {
     res.status(500).send({ msg: "Error editing a course!", error })
@@ -50,10 +52,16 @@ exports.course_update_put = async (req, res) => {
 
 exports.course_deleteCourse_delete = async (req, res) => {
   try {
-    if (!res.locals.payload.id) {
+    const currentUser = res.locals.payload.id
+    const course = await Course.findById(req.params.courseId)
+    if (!course) {
+      res.status(404).send({ msg: "Course not found!", error })
+    }
+
+    if (course.instructor.toString() !== currentUser) {
       res.status(403).send({ status: "Error", msg: "Unauthorized" })
     } else {
-      const course = await Course.findByIdAndDelete(req.params.courseId)
+      await course.deleteOne()
       res.status(200).send("Course Deleted!")
     }
   } catch (error) {
