@@ -3,21 +3,21 @@ const userCtrl = require("../controllers/userController")
 const middleware = require("../middleware/index")
 
 router.get(
-  "/profile",
+  "/",
   middleware.stripToken,
   middleware.verifyToken,
   userCtrl.user_profile_get
 )
 
 router.put(
-  "/profile/update",
+  "/update",
   middleware.stripToken,
   middleware.verifyToken,
   userCtrl.user_updateProfile_put
 )
 
 router.delete(
-  "/profile/delete",
+  "/delete",
   middleware.stripToken,
   middleware.verifyToken,
   userCtrl.user_deleteProfile_delete

@@ -20,7 +20,10 @@ const authRouter = require("./routes/authRouter")
 app.use("/auth", authRouter)
 
 const userRouter = require("./routes/userRouter")
-app.use("/", userRouter)
+app.use("/profile", userRouter)
+
+const enrollmentRouter = require("./routes/enrollmentRouter")
+app.use("/enrollments", enrollmentRouter)
 
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
