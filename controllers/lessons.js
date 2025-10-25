@@ -1,4 +1,5 @@
 const Lesson = require("../models/Lesson.js")
+const Course = require("../models/Course.js")
 
 const get_lessons = async (req, res) => {
   try {
@@ -8,5 +9,4 @@ const get_lessons = async (req, res) => {
   catch (error) {
     res.status(500).send({msg: "Error getting the lessons", error})
   }
-
 }

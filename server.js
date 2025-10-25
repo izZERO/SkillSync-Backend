@@ -18,6 +18,8 @@ app.use(
 )
 
 // Routers
+const lessonCtrl = require("./routes/lessons")
+app.use("/lessons", lessonCtrl)
 
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
