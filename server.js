@@ -20,7 +20,7 @@ app.use(
 
 // Routers
 
-app.use("/lessons", lessonRoutes)
+app.use("/", lessonRoutes)
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
 })
