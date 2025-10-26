@@ -1,4 +1,5 @@
 const Enrollment = require("../models/Enrollment")
+require("../models/Course")
 
 exports.enrollment_enrollStudent_post = async (req, res) => {
   try {
