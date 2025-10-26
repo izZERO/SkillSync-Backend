@@ -2,7 +2,6 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 require("dotenv").config()
-const lessonRoutes = require("./routes/lessons")
 const PORT = process.env.PORT || 3001
 
 const db = require("./db")
@@ -29,19 +28,9 @@ app.use("/enrollments", enrollmentRouter)
 const courseRouter = require("./routes/courseRouter")
 app.use("/course", courseRouter)
 
-const authRouter = require("./routes/authRouter")
-app.use("/auth", authRouter)
+const lessonRouter = require("./routes/lessonRouter")
+app.use("/", lessonRouter)
 
-const userRouter = require("./routes/userRouter")
-app.use("/profile", userRouter)
-
-const enrollmentRouter = require("./routes/enrollmentRouter")
-app.use("/enrollments", enrollmentRouter)
-
-const courseRouter = require("./routes/courseRouter")
-app.use("/course", courseRouter)
-
-app.use("/", lessonRoutes)
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
 })

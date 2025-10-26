@@ -1,16 +1,18 @@
 const router = require("express").Router()
-const lessonCtrl = require("../controllers/lessons")
+const lessonCtrl = require("../controllers/lessonController")
 const middleware = require("../middleware/index")
 
 router.get(
   "/courses/:courseId/lessons",
-
+  middleware.stripToken,
+  middleware.verifyToken,
   lessonCtrl.lessons_index_get
 )
 
 router.get(
   "/courses/:courseId/lessons/:lessonId",
-
+  middleware.stripToken,
+  middleware.verifyToken,
   lessonCtrl.lesson_show_get
 )
 
