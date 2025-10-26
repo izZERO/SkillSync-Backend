@@ -94,3 +94,8 @@ exports.auth_updatePassword_put = async (req, res) => {
     })
   }
 }
+
+exports.auth_checkSession_get = async (req, res) => {
+  const { payload } = res.locals
+  res.status(200).send(payload)
+}

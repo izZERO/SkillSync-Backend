@@ -10,5 +10,11 @@ router.put(
   middleware.verifyToken,
   authCtrl.auth_updatePassword_put
 )
+router.get(
+  "/session",
+  middleware.stripToken,
+  middleware.verifyToken,
+  authCtrl.auth_checkSession_get
+)
 
 module.exports = router
