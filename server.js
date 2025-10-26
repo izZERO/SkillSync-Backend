@@ -13,12 +13,33 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
-app.use(
-  "/public/<Insert Photos Upload Here>",
-  express.static("./public/<Insert Photos Upload Here>")
-)
+app.use("/public/images", express.static("./public/images"))
 
 // Routers
+
+const authRouter = require("./routes/authRouter")
+app.use("/auth", authRouter)
+
+const userRouter = require("./routes/userRouter")
+app.use("/profile", userRouter)
+
+const enrollmentRouter = require("./routes/enrollmentRouter")
+app.use("/enrollments", enrollmentRouter)
+
+const courseRouter = require("./routes/courseRouter")
+app.use("/course", courseRouter)
+
+const authRouter = require("./routes/authRouter")
+app.use("/auth", authRouter)
+
+const userRouter = require("./routes/userRouter")
+app.use("/profile", userRouter)
+
+const enrollmentRouter = require("./routes/enrollmentRouter")
+app.use("/enrollments", enrollmentRouter)
+
+const courseRouter = require("./routes/courseRouter")
+app.use("/course", courseRouter)
 
 app.use("/", lessonRoutes)
 app.listen(PORT, () => {
