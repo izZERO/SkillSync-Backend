@@ -1,8 +1,9 @@
 const Course = require("../models/Course")
+require("../models/User")
 
 exports.courses_index_get = async (req, res) => {
   try {
-    const courses = await Course.find({})
+    const courses = await Course.find({}).populate("instructor")
     res.status(200).send(courses)
   } catch (error) {
     res.status(500).send({ msg: "Error getting all courses!", error })
