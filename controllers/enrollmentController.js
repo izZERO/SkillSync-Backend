@@ -1,5 +1,7 @@
+const { model } = require("mongoose")
 const Enrollment = require("../models/Enrollment")
 require("../models/Course")
+require("../models/User")
 
 exports.enrollment_enrollStudent_post = async (req, res) => {
   try {
@@ -36,9 +38,17 @@ exports.enrollment_currentUserEnrollments_get = async (req, res) => {
   try {
     const enrollments = await Enrollment.find({
       studentId: res.locals.payload.id,
-    }).populate("courseId")
+    }).populate({
+      path: "courseId",
+      model: "Course",
+      populate: {
+        path: "instructor",
+        model: "User",
+      },
+    })
     res.status(200).send(enrollments)
   } catch (error) {
+    console.log(error)
     res.status(500).send({
       status: "Error",
       msg: "An error occurred fetching user enrollments",
