@@ -2,7 +2,18 @@ const router = require("express").Router()
 const courseCtrl = require("../controllers/courseController")
 const middleware = require("../middleware/index")
 
-router.get("/", courseCtrl.courses_index_get)
+router.get(
+  "/",
+  middleware.stripToken,
+  middleware.verifyToken,
+  courseCtrl.courses_index_get
+)
+router.get(
+  "/instructor",
+  middleware.stripToken,
+  middleware.verifyToken,
+  courseCtrl.courses_instructorIndex_get
+)
 router.post(
   "/",
   middleware.stripToken,

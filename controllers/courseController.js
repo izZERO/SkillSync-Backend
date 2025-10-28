@@ -10,6 +10,15 @@ exports.courses_index_get = async (req, res) => {
   }
 }
 
+exports.courses_instructorIndex_get = async (req, res) => {
+  try {
+    const courses = await Course.find({ instructor: res.locals.payload.id })
+    res.status(200).send(courses)
+  } catch (error) {
+    res.status(500).send({ msg: "Error getting all courses!", error })
+  }
+}
+
 exports.course_new_post = async (req, res) => {
   try {
     const instructorId = res.locals.payload.id
