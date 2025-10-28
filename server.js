@@ -28,6 +28,9 @@ app.use("/enrollments", enrollmentRouter)
 const courseRouter = require("./routes/courseRouter")
 app.use("/courses", courseRouter)
 
+const lessonRouter = require("./routes/lessonRouter")
+app.use("/", lessonRouter)
+
 app.listen(PORT, () => {
   console.log(`Express Server Running on Port`, PORT, `. . .`)
 })
