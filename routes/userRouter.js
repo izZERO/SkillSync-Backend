@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const userCtrl = require("../controllers/userController")
 const middleware = require("../middleware/index")
+const upload = require("../middleware/multer")
 
 router.get(
   "/",
@@ -13,6 +14,7 @@ router.put(
   "/update",
   middleware.stripToken,
   middleware.verifyToken,
+  upload.single("profilePicture"),
   userCtrl.user_updateProfile_put
 )
 

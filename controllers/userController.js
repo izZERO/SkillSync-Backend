@@ -18,9 +18,19 @@ exports.user_profile_get = async (req, res) => {
 
 exports.user_updateProfile_put = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(res.locals.payload.id, req.body, {
-      new: true,
-    })
+    const updateData = { ...req.body }
+
+    if (req.file) {
+      updateData.profilePicture = `public/images/${req.file.filename}`
+    }
+
+    const user = await User.findByIdAndUpdate(
+      res.locals.payload.id,
+      updateData,
+      {
+        new: true,
+      }
+    )
 
     res.status(200).send(user)
   } catch (error) {
