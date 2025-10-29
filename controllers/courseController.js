@@ -12,7 +12,9 @@ exports.courses_index_get = async (req, res) => {
 
 exports.courses_instructorIndex_get = async (req, res) => {
   try {
-    const courses = await Course.find({ instructor: res.locals.payload.id })
+    const courses = await Course.find({
+      instructor: res.locals.payload.id,
+    }).populate("instructor")
     res.status(200).send(courses)
   } catch (error) {
     res.status(500).send({ msg: "Error getting all courses!", error })
@@ -34,7 +36,9 @@ exports.course_new_post = async (req, res) => {
 
 exports.course_show_get = async (req, res) => {
   try {
-    const course = await Course.findById(req.params.courseId)
+    const course = await Course.findById(req.params.courseId).populate(
+      "instructor"
+    )
     res.status(200).send(course)
   } catch (error) {
     res.status(500).send({ msg: "Error getting a course!", error })

@@ -73,7 +73,14 @@ exports.enrollment_oneEnrollment_get = async (req, res) => {
   try {
     const enrollment = await Enrollment.findById(req.params.id)
       .populate("studentId")
-      .populate("courseId")
+      .populate({
+        path: "courseId",
+        model: "Course",
+        populate: {
+          path: "instructor",
+          model: "User",
+        },
+      })
 
     if (!enrollment) {
       return res
@@ -113,7 +120,14 @@ exports.enrollment_updateEnrollment_put = async (req, res) => {
       { new: true }
     )
       .populate("studentId")
-      .populate("courseId")
+      .populate({
+        path: "courseId",
+        model: "Course",
+        populate: {
+          path: "instructor",
+          model: "User",
+        },
+      })
 
     res.status(200).send(enrollment)
   } catch (error) {
