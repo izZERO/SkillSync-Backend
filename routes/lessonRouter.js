@@ -10,7 +10,7 @@ router.get(
 )
 
 router.get(
-  "/courses/:courseId/lessons/:lessonId",
+  "/lesson/:lessonId",
   middleware.stripToken,
   middleware.verifyToken,
   lessonCtrl.lesson_show_get
@@ -24,7 +24,7 @@ router.post(
 )
 
 router.put(
-  "/courses/:courseId/lessons/:lessonId",
+  "/lesson/:lessonId/edit",
   middleware.stripToken,
   middleware.verifyToken,
   lessonCtrl.lesson_update_put
