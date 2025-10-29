@@ -4,7 +4,9 @@ const Course = require("../models/Course.js")
 const lessons_index_get = async (req, res) => {
   try {
     const course = await Course.findById(req.params.courseId)
-    const allLessons = await Lesson.find({ _id: course.lessons })
+    const allLessons = await Lesson.find({ _id: course.lessons }).sort({
+      order: 1,
+    })
     res.status(200).send(allLessons)
   } catch (error) {
     res.status(500).send({ msg: "Error getting the lessons", error })
