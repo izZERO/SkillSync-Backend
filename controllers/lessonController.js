@@ -35,11 +35,9 @@ const lesson_new_post = async (req, res) => {
       return res.status(403).send({ msg: "Unauthorized" })
     }
     const existingLessons = await Lesson.find({ course: req.params.courseId })
-    const order = existingLessons.length + 1
     const lesson = await Lesson.create({
       ...req.body,
       course: req.params.courseId,
-      order,
     })
     course.lessons.push(lesson._id)
     await course.save()
